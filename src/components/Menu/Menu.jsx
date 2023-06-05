@@ -8,22 +8,19 @@ const Menu = () => {
         <Grid item xs={4} sm={8} md={12} className="menu_item1">
           <div
             style={{
-              paddingTop: 16,
+              height: "9vh",
               paddingRight: 28,
-              paddingBottom: 16,
               paddingLeft: 28,
               backgroundColor: "#1F1F1F",
               display: "flex",
               alignItems: "center",
             }}
           >
-            <div class="image-container">
-              <img
-                onClick={() => window.location.reload()}
-                src={process.env.REACT_APP_IMAGE + "/images/icon_main.png"}
-                alt="Ảnh"
-              />
-            </div>
+            <img
+              onClick={() => window.location.reload()}
+              src={process.env.REACT_APP_IMAGE + "/images/icon_main.png"}
+              alt="Ảnh"
+            />
           </div>
         </Grid>
         <Grid item xs={4} sm={8} md={12} className="menu_item2">
