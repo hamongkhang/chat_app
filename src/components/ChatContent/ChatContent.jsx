@@ -5,10 +5,8 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 
-const ChatContent = (props) => {
-  return (
-  <div>content</div>
-  );
+const ChatContent = () => {
+  return <Box className="Content_Container">haha</Box>;
 };
 
 export default ChatContent;

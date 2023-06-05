@@ -17,6 +17,7 @@
 .right_app {
   background-color: rgba(0, 0, 0, 1);
   color: rgba(211, 211, 211, 1);
+  padding: 0px 180px 0px 180px;
 }
 
 @media (max-width: 600px) {
