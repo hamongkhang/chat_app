@@ -204,9 +204,11 @@ const ChatContent = (props) => {
                     alt="Ảnh"
                     className="loading_avt"
                   />
-                  <div className="loading_item"></div>
-                  <div className="loading_item"></div>
-                  <div className="loading_item"></div>
+                  <div className="loading-dots">
+                    <span className="dot"></span>
+                    <span className="dot"></span>
+                    <span className="dot"></span>
+                  </div>
                 </div>
               </Box>
             ) : null}
