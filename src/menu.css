@@ -1,0 +1,12 @@
+.image-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.image-container.clicked {
+  cursor: grab;
+}
+
+.image-container.clicked:active {
+  cursor: grabbing;
+}

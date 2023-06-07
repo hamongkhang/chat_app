@@ -16,11 +16,13 @@ const Menu = () => {
               alignItems: "center",
             }}
           >
-            <img
-              onClick={() => window.location.reload()}
-              src={process.env.REACT_APP_IMAGE + "/images/icon_main.png"}
-              alt="Ảnh"
-            />
+            <div class="image-container">
+              <img
+                onClick={() => window.location.reload()}
+                src={process.env.REACT_APP_IMAGE + "/images/icon_main.png"}
+                alt="Ảnh"
+              />
+            </div>
           </div>
         </Grid>
         <Grid item xs={4} sm={8} md={12} className="menu_item2">
