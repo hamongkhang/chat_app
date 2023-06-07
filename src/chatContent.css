@@ -238,10 +238,40 @@
   }
 }
 
+@media (max-width: 420px) {
+  .content_container_top {
+    min-width: 0px;
+    height: 62.5%;
+  }
+
+  .content_container_bottom {
+    height: 27.5%;
+    min-width: 0px;
+  }
+
+  .deleteClick {
+    right: -8px;
+  }
+}
 @media (max-width: 320px) {
   .content_container_top {
     min-width: 0px;
-    height: 52.5%;
+    height: 62.5%;
+  }
+
+  .content_container_bottom {
+    height: 27.5%;
+    min-width: 0px;
+  }
+
+  .deleteClick {
+    right: -8px;
+  }
+}
+@media (max-width: 320px) {
+  .content_container_top {
+    min-width: 0px;
+    height: 62.5%;
   }
 
   .content_container_bottom {
