@@ -166,7 +166,98 @@ const ChatContent = (props) => {
   return (
     <Box className="content_container">
       <Box className="content_container_top">
-        {listMessage.length ? null : (
+        {listMessage.length ? (
+          <Box className="chat-container" ref={chatContainerRef}>
+            {listMessage.map((message, index) => {
+              return (
+                <Box
+                  key={index}
+                  className="chat_form"
+                  sx={{ background: index % 2 === 0 ? "#262626" : "#181818" }}
+                >
+                  {index % 2 === 0 ? (
+                    <img
+                      src="https://hamongkhang.github.io/CHATGPT_APP/images/you.png"
+                      alt="Ảnh"
+                      className="avatar"
+                    />
+                  ) : (
+                    <img
+                      src="https://hamongkhang.github.io/CHATGPT_APP/images/chatgpt-icon-logo.png"
+                      alt="Ảnh"
+                      className="avatar"
+                    />
+                  )}
+                  <div className="chat_content">
+                    <Typography className="chat_content_text">
+                      {message}
+                    </Typography>
+                  </div>
+                </Box>
+              );
+            })}
+            {/* {loading ? (
+              <Box
+                sx={{
+                  width: "100%",
+                  left: "460px",
+                  top: "33px",
+                  display: "flex",
+                  background: "#181818",
+                  borderRadius: "0px 0px 0px 0px",
+                  padding: "32px 32px 32px 32px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginRight: "16px",
+                  }}
+                >
+                  <img
+                    src="https://hamongkhang.github.io/CHATGPT_APP/images/chatgpt-icon-logo.png"
+                    alt="Ảnh"
+                    style={{
+                      width: "44px",
+                      height: "44px",
+                    }}
+                  />
+                  <div
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      backgroundColor: "#3F5AC8",
+                      borderRadius: "50%",
+                      animation: "bounce 0.6s infinite",
+                      marginLeft: "4px",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      backgroundColor: "#3F5AC8",
+                      borderRadius: "50%",
+                      animation: "bounce 0.6s infinite",
+                      marginLeft: "4px",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      backgroundColor: "#3F5AC8",
+                      borderRadius: "50%",
+                      animation: "bounce 0.6s infinite",
+                      marginLeft: "4px",
+                    }}
+                  ></div>
+                </div>
+              </Box>
+            ) : null} */}
+          </Box>
+        ) : (
           <Box className="background_image">
             <img
               src="https://hamongkhang.github.io/CHATGPT_APP/images/content.png"
