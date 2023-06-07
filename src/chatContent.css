@@ -241,7 +241,7 @@
 @media (max-width: 420px) {
   .content_container_top {
     min-width: 0px;
-    height: 61.5%;
+    height: 60.5%;
   }
 
   .content_container_bottom {
@@ -257,7 +257,7 @@
 @media (max-width: 320px) {
   .content_container_top {
     min-width: 0px;
-    height: 61.5%;
+    height: 60.5%;
   }
 
   .content_container_bottom {
