@@ -196,66 +196,20 @@ const ChatContent = (props) => {
                 </Box>
               );
             })}
-            {/* {loading ? (
-              <Box
-                sx={{
-                  width: "100%",
-                  left: "460px",
-                  top: "33px",
-                  display: "flex",
-                  background: "#181818",
-                  borderRadius: "0px 0px 0px 0px",
-                  padding: "32px 32px 32px 32px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginRight: "16px",
-                  }}
-                >
+            {loading ? (
+              <Box className="loading_container">
+                <div className="loading_child">
                   <img
                     src="https://hamongkhang.github.io/CHATGPT_APP/images/chatgpt-icon-logo.png"
                     alt="Ảnh"
-                    style={{
-                      width: "44px",
-                      height: "44px",
-                    }}
+                    className="loading_avt"
                   />
-                  <div
-                    style={{
-                      width: "10px",
-                      height: "10px",
-                      backgroundColor: "#3F5AC8",
-                      borderRadius: "50%",
-                      animation: "bounce 0.6s infinite",
-                      marginLeft: "4px",
-                    }}
-                  ></div>
-                  <div
-                    style={{
-                      width: "10px",
-                      height: "10px",
-                      backgroundColor: "#3F5AC8",
-                      borderRadius: "50%",
-                      animation: "bounce 0.6s infinite",
-                      marginLeft: "4px",
-                    }}
-                  ></div>
-                  <div
-                    style={{
-                      width: "10px",
-                      height: "10px",
-                      backgroundColor: "#3F5AC8",
-                      borderRadius: "50%",
-                      animation: "bounce 0.6s infinite",
-                      marginLeft: "4px",
-                    }}
-                  ></div>
+                  <div className="loading_item"></div>
+                  <div className="loading_item"></div>
+                  <div className="loading_item"></div>
                 </div>
               </Box>
-            ) : null} */}
+            ) : null}
           </Box>
         ) : (
           <Box className="background_image">
