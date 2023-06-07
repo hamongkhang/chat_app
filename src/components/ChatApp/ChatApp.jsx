@@ -8,8 +8,6 @@ function ChatApp() {
   const chatContainerRef2 = useRef(null);
 
   useEffect(() => {
-    console.log("khang");
-
     if (chatContainerRef2.current) {
       chatContainerRef2.current.scrollTop =
         chatContainerRef2.current.scrollHeight;

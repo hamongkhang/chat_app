@@ -165,7 +165,25 @@ const ChatContent = (props) => {
 
   return (
     <Box className="content_container">
-      <Box className="content_container_top">
+      <Box
+        className="content_container_top"
+        sx={{
+          height:
+            checkSize === 37
+              ? "85%"
+              : checkSize === 47
+              ? "84%"
+              : checkSize === 62
+              ? "81%"
+              : checkSize === 77
+              ? "79%"
+              : checkSize === 93
+              ? "76%"
+              : checkSize === 108
+              ? "75%"
+              : "75%",
+        }}
+      >
         {listMessage.length ? (
           <Box className="chat-container" ref={chatContainerRef}>
             {listMessage.map((message, index) => {
@@ -223,7 +241,25 @@ const ChatContent = (props) => {
         )}
       </Box>
 
-      <Box className="content_container_bottom">
+      <Box
+        className="content_container_bottom"
+        sx={{
+          height:
+            checkSize === 37
+              ? "15%"
+              : checkSize === 47
+              ? "16%"
+              : checkSize === 62
+              ? "19%"
+              : checkSize === 77
+              ? "21%"
+              : checkSize === 93
+              ? "24%"
+              : checkSize === 108
+              ? "25%"
+              : "25%",
+        }}
+      >
         <div
           className="form_pc"
           style={{ width: "100%", position: "relative" }}
