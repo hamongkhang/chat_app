@@ -6,7 +6,6 @@
 
 .content_container_top {
   height: 75%;
-  min-width: 450px;
 }
 
 .background_image {
@@ -20,18 +19,116 @@
 
 .content_container_bottom {
   height: 25%;
-  min-width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.form_description {
+  margin-top: 10px;
+  text-align: center;
+  color: rgba(211, 211, 211, 1);
+  font-size: 14px !important;
+}
+
+.text_area {
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: #222222;
+  border: 1.5px solid #434343;
+  padding: 8px;
+  padding-right: 60px;
+  color: #ffffff;
+  resize: none;
+}
+
+.form_icon {
+  position: absolute;
+  top: 46%;
+  right: 8px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 1;
+}
+
+.deleteClick {
+  position: fixed;
+  width: 141px;
+  height: Hug (31px);
+  top: -31px;
+  border-radius: 8px;
+  background-color: rgba(55, 55, 55, 1);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  transform: translateY(-50%);
+  right: -100px;
+}
+
+.delete_icon {
+  color: rgba(218, 218, 218, 1);
+  width: 13.75px !important;
+  height: 15px !important;
+}
+
+.delete_text {
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  line-height: 23px !important;
+  color: rgba(218, 218, 218, 1);
+}
+
+.form_mobile {
+  display: none;
+}
+
+.form_mobile_input {
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: #222222;
+  border: 1.5px solid #434343;
+  padding: 8px;
+  padding-right: 60px;
+  color: #ffffff;
+  resize: none;
+  margin-left: 10px;
+}
+
+.form_mobile_icon {
+  position: absolute;
+  width: 91px;
+  height: Hug (31px);
+  right: 20px;
+  border-radius: 8px;
+  background-color: rgba(55, 55, 55, 1);
+  z-index: 2;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  transform: translateY(-50%);
 }
 
 @media (max-width: 900px) {
   .content_container_top {
     min-width: 0px;
-    height: 72.5%;
+    height: 76.5%;
   }
 
   .content_container_bottom {
-    height: 27.5%;
+    height: 23.5%;
     min-width: 0px;
+  }
+
+  .deleteClick {
+    right: -8px;
   }
 }
 
@@ -45,6 +142,19 @@
     height: 27.5%;
     min-width: 0px;
   }
+
+  .deleteClick {
+    right: -8px;
+  }
+
+  .form_mobile {
+    display: block;
+    display: flex;
+  }
+
+  .form_pc {
+    display: none;
+  }
 }
 
 @media (max-width: 320px) {
@@ -56,5 +166,9 @@
   .content_container_bottom {
     height: 27.5%;
     min-width: 0px;
+  }
+
+  .deleteClick {
+    right: -8px;
   }
 }

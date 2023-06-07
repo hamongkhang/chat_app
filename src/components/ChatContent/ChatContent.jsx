@@ -5,7 +5,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 
-const ChatContent = () => {
+const ChatContent = (props) => {
   const chatContainerRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,6 +14,174 @@ const ChatContent = () => {
   const [suggest, setSuggest] = useState();
   const [isDropdown, setIsDropdown] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleEnterPress();
+      event.preventDefault();
+    }
+  };
+
+  const handleEnterPress = () => {
+    if (!isError) {
+      if (listMessage.length % 2 !== 0) {
+        return;
+      }
+    } else {
+      setIsError(false);
+    }
+    setMessage("");
+    setListMessage([...listMessage, message]);
+    setTimeout(async () => {
+      await sendMessage(message);
+      setLoading(false);
+    }, 1000);
+  };
+
+  const handleDropdown = () => {
+    setIsDropdown(!isDropdown);
+  };
+
+  const handleChangeSuggest = (message) => {
+    setMessage(message);
+    setIsDropdown(!isDropdown);
+  };
+
+  const generateSuggestedQuestions = (answer) => {
+    const suggestedQuestions = [
+      `Cho tôi thêm thông tin được không?`,
+      `Tại sao nó lại quan trọng?`,
+    ];
+
+    return suggestedQuestions;
+  };
+
+  const sendMessage = async (message) => {
+    var apiKey = "fps4J0CkOPtBSKv8Xo3iT3BlbkFJoxrL3Ouc0kvMrfLHb4nF";
+    if (isLoading) {
+      return;
+    }
+    setLoading(true);
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          messages: [
+            { role: "system", content: "You are" },
+            { role: "user", content: message },
+          ],
+          model: "gpt-3.5-turbo",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer sk-" + apiKey,
+          },
+        }
+      );
+
+      const newMessage = response.data.choices[0].message.content;
+      setSuggest(generateSuggestedQuestions(newMessage));
+      setListMessage([...listMessage, message, newMessage]);
+    } catch (error) {
+      setIsError(true);
+      setListMessage([...listMessage, message, "ChatBox...."]);
+      console.error("Error:", error);
+    } finally {
+      setIsLoading(false); // Đánh dấu kết thúc loading
+    }
+  };
+  const handleMenuToggle = () => {
+    props.setShowMenu(!props.showMenu);
+  };
+
+  const changeMessage = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleDelete = () => {
+    setListMessage([]);
+    props.setShowMenu(!props.showMenu);
+  };
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    if (listMessage.length % 2 !== 0) {
+      return;
+    }
+    setMessage("");
+    setListMessage([...listMessage, message]);
+    setTimeout(async () => {
+      await sendMessage(message);
+      setLoading(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [listMessage]);
+
+  const textareaRef = useRef(null);
+  const textareaRef2 = useRef(null);
+
+  const handleChangeMessage = (event) => {
+    setMessage(event.target.value);
+  };
+
+  const initialTextareaHeight = 40;
+  useEffect(() => {
+    adjustTextareaHeight();
+    adjustTextareaHeight2();
+  }, [message]);
+  const [checkSize, setCheckSize] = useState(40);
+  const [checkSize2, setCheckSize2] = useState(40);
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [checkSize]);
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [checkSize2]);
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  });
+  const adjustTextareaHeight = () => {
+    const textarea = textareaRef.current;
+    textarea.style.height = `${initialTextareaHeight}px`;
+    textarea.style.height = `${textarea.scrollHeight}px`;
+    setCheckSize(textarea.scrollHeight);
+
+    if (textarea.scrollHeight > initialTextareaHeight * 2.5) {
+      textarea.style.overflowY = "auto";
+    } else {
+      textarea.style.overflowY = "hidden";
+    }
+  };
+  const adjustTextareaHeight2 = () => {
+    const textarea = textareaRef2.current;
+    textarea.style.height = `${initialTextareaHeight}px`;
+    textarea.style.height = `${textarea.scrollHeight}px`;
+    setCheckSize2(textarea.scrollHeight);
+
+    if (textarea.scrollHeight > initialTextareaHeight * 2.5) {
+      textarea.style.overflowY = "auto";
+    } else {
+      textarea.style.overflowY = "hidden";
+    }
+  };
+
   return (
     <Box className="content_container">
       <Box className="content_container_top">
@@ -27,7 +195,84 @@ const ChatContent = () => {
         )}
       </Box>
 
-      <Box className="content_container_bottom">ádad</Box>
+      <Box className="content_container_bottom">
+        <div
+          className="form_pc"
+          style={{ width: "100%", position: "relative" }}
+        >
+          <textarea
+            className="text_area"
+            onKeyDown={handleKeyPress}
+            ref={textareaRef}
+            onChange={handleChangeMessage}
+            value={message}
+            style={{
+              minHeight: `${initialTextareaHeight}px`,
+              maxHeight: `${initialTextareaHeight * 2.5}px`,
+            }}
+          />
+          <div className="form_icon">
+            {message ? (
+              <IconButton onClick={(e) => handleSendMessage(e)}>
+                <SendIcon style={{ color: "#6D6D6D" }} />
+              </IconButton>
+            ) : (
+              <IconButton onClick={handleMenuToggle}>
+                <MoreHorizIcon style={{ color: "#6D6D6D" }} />
+              </IconButton>
+            )}
+            {props.showMenu && (
+              <div class="image-container">
+                <Box className="deleteClick" onClick={handleDelete}>
+                  <IconButton>
+                    <DeleteIcon className="delete_icon" />
+                  </IconButton>
+                  <Typography className="delete_text">Delete</Typography>
+                </Box>
+              </div>
+            )}
+          </div>
+        </div>
+        <div
+          className="form_mobile"
+          style={{ width: "100%", alignItems: "center" }}
+        >
+          <textarea
+            className="form_mobile_input"
+            onKeyDown={handleKeyPress}
+            ref={textareaRef2}
+            onChange={handleChangeMessage}
+            value={message}
+            style={{
+              minHeight: `${initialTextareaHeight}px`,
+              maxHeight: `${initialTextareaHeight * 2.5}px`,
+            }}
+          />
+          {message ? (
+            <IconButton onClick={(e) => handleSendMessage(e)}>
+              <SendIcon style={{ marginLeft: "5px", color: "#6D6D6D" }} />
+            </IconButton>
+          ) : (
+            <IconButton onClick={handleMenuToggle}>
+              <MoreHorizIcon style={{ marginLeft: "5px", color: "#6D6D6D" }} />
+            </IconButton>
+          )}
+          {props.showMenu && (
+            <div class="image-container">
+              <Box className="form_mobile_icon" onClick={handleDelete}>
+                <IconButton>
+                  <DeleteIcon className="delete_icon" />
+                </IconButton>
+                <Typography className="delete_text">Delete</Typography>
+              </Box>
+            </div>
+          )}
+        </div>
+        <Typography className="form_description">
+          Free Research Preview. ChatGPT may product inaccurate information
+          about people, place, or fact
+        </Typography>
+      </Box>
     </Box>
   );
 };
