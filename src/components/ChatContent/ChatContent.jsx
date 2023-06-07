@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Box, Grid, Typography, IconButton } from "@mui/material";
+import { Box, Typography, IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -11,9 +11,13 @@ const ChatContent = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [listMessage, setListMessage] = useState([]);
-  const [suggest, setSuggest] = useState();
-  const [isDropdown, setIsDropdown] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  const textareaRef = useRef(null);
+  const textareaRef2 = useRef(null);
+  const initialTextareaHeight = 40;
+  const [checkSize, setCheckSize] = useState(40);
+  const [checkSize2, setCheckSize2] = useState(40);
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -36,24 +40,6 @@ const ChatContent = (props) => {
       await sendMessage(message);
       setLoading(false);
     }, 1000);
-  };
-
-  const handleDropdown = () => {
-    setIsDropdown(!isDropdown);
-  };
-
-  const handleChangeSuggest = (message) => {
-    setMessage(message);
-    setIsDropdown(!isDropdown);
-  };
-
-  const generateSuggestedQuestions = (answer) => {
-    const suggestedQuestions = [
-      `Cho tôi thêm thông tin được không?`,
-      `Tại sao nó lại quan trọng?`,
-    ];
-
-    return suggestedQuestions;
   };
 
   const sendMessage = async (message) => {
@@ -82,22 +68,18 @@ const ChatContent = (props) => {
       );
 
       const newMessage = response.data.choices[0].message.content;
-      setSuggest(generateSuggestedQuestions(newMessage));
       setListMessage([...listMessage, message, newMessage]);
     } catch (error) {
       setIsError(true);
       setListMessage([...listMessage, message, "ChatBox...."]);
       console.error("Error:", error);
     } finally {
-      setIsLoading(false); // Đánh dấu kết thúc loading
+      setIsLoading(false);
     }
   };
+
   const handleMenuToggle = () => {
     props.setShowMenu(!props.showMenu);
-  };
-
-  const changeMessage = (e) => {
-    setMessage(e.target.value);
   };
 
   const handleDelete = () => {
@@ -118,45 +100,10 @@ const ChatContent = (props) => {
     }, 1000);
   };
 
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
-    }
-  }, [listMessage]);
-
-  const textareaRef = useRef(null);
-  const textareaRef2 = useRef(null);
-
   const handleChangeMessage = (event) => {
     setMessage(event.target.value);
   };
 
-  const initialTextareaHeight = 40;
-  useEffect(() => {
-    adjustTextareaHeight();
-    adjustTextareaHeight2();
-  }, [message]);
-  const [checkSize, setCheckSize] = useState(40);
-  const [checkSize2, setCheckSize2] = useState(40);
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
-    }
-  }, [checkSize]);
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
-    }
-  }, [checkSize2]);
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
-    }
-  });
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
     textarea.style.height = `${initialTextareaHeight}px`;
@@ -169,6 +116,7 @@ const ChatContent = (props) => {
       textarea.style.overflowY = "hidden";
     }
   };
+
   const adjustTextareaHeight2 = () => {
     const textarea = textareaRef2.current;
     textarea.style.height = `${initialTextareaHeight}px`;
@@ -181,6 +129,39 @@ const ChatContent = (props) => {
       textarea.style.overflowY = "hidden";
     }
   };
+
+  useEffect(() => {
+    adjustTextareaHeight();
+    adjustTextareaHeight2();
+  }, [message]);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [checkSize]);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [checkSize2]);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  });
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [listMessage]);
 
   return (
     <Box className="content_container">
