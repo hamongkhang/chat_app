@@ -252,6 +252,14 @@
   .deleteClick {
     right: -8px;
   }
+
+  .right_app {
+    height: 81vh;
+    display: inline;
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(211, 211, 211, 1);
+    padding: 0px 0px 0px 0px;
+  }
 }
 
 @media (max-width: 320px) {
@@ -267,5 +275,13 @@
 
   .deleteClick {
     right: -8px;
+  }
+
+  .right_app {
+    height: 81vh;
+    display: inline;
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(211, 211, 211, 1);
+    padding: 0px 0px 0px 0px;
   }
 }
