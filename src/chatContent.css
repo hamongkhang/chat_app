@@ -4,10 +4,6 @@
   background-color: rgba(24, 24, 24, 1);
 }
 
-.content_container_top {
-  height: 75%;
-}
-
 .background_image {
   width: 100%;
   display: flex;
@@ -239,13 +235,16 @@
 }
 
 @media (max-width: 420px) {
+  .content_container {
+    padding-bottom: 10px;
+  }
   .content_container_top {
     min-width: 0px;
-    height: 68.5%;
+    height: 67.5%;
   }
 
   .content_container_bottom {
-    height: 27.5%;
+    height: 28.5%;
     min-width: 0px;
   }
 
@@ -254,7 +253,7 @@
   }
 
   .right_app {
-    height: 81vh;
+    height: 78vh;
     display: inline;
     background-color: rgba(0, 0, 0, 1);
     color: rgba(211, 211, 211, 1);
@@ -278,7 +277,7 @@
   }
 
   .right_app {
-    height: 81vh;
+    height: 78vh;
     display: inline;
     background-color: rgba(0, 0, 0, 1);
     color: rgba(211, 211, 211, 1);
